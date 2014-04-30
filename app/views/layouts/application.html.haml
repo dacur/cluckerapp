@@ -1,0 +1,61 @@
+!!!
+%html
+	%head
+		%title Clucker
+		=stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+		=javascript_include_tag "application", "data-turbolinks-track" => true
+		=csrf_meta_tags
+		%link{:rel => :stylesheet, :type => :"text/css", :href => 'http://fonts.googleapis.com/css?family=Roboto'}
+	
+	%body
+		.navbartop
+			#small-logo
+				=link_to image_tag('cluckerlogosmall.gif'), '/', :alt=>"Clucker Logo", :title=>"Go home!"
+					
+			.navlinks	
+				=link_to "Home", "/"
+				=link_to "About", "/main/about" 
+				=link_to "Contact", "/main/contact"
+				=link_to "Location", "/main/location"
+
+			%button.loginbutton
+				Log In
+
+		.loginpagehidden
+			%h2 Please log into or sign up for Clucker
+			%ul.contactform
+				%li
+					%label{:for => "firstname"} First Name:
+					%input{:type => "text", :name => "firstname", :class => "text", :id => "firstname"}
+					#firstnamemessage
+						%p.formmessage Please enter your first name.
+				%li
+					%label{:for => "name"} Last Name:
+					%input{:type => "text", :name => "lastname", :class => "text", :id => "lastname"}
+					#lastnamemessage
+						%p.formmessage Please enter your last name.
+				%li
+					%label{:for => "mail"} Email:
+					%input{:type => "text", :name => "mail", :class => "text", :id => "email"}
+					#emailmessage 
+						%p.formmessage Email is not valid.
+
+				%li
+					%label{:for => "mail"} Password:
+					%input{:type => "text", :name => "password", :class => "text", :id => "password"}
+					#passwordmessage
+						%p.formmessage Password is not valid.
+
+				%li
+					%label{:for => "mail"} Confirm Password:
+					%input{:type => "text", :name => "confirmpassword", :class => "text", :id => "confirmpassword"}
+					#confirmpasswordmessage 
+						%p.formmessage Password does not match.
+
+			.buttonHolder
+				%button.submitbtn Submit
+				%button.cancelbtn Cancel
+
+
+		=yield
+

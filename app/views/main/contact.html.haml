@@ -1,0 +1,26 @@
+%form{ :action => "", :method => "post"}
+	
+	%ul.contactform
+		%li 
+			Salutation: 
+			%select
+				%option Mr.
+				%option Ms.
+				%option Mrs.
+				%option Dr.
+				%option Lord
+				%option Lady
+		%li
+			%label{:for => "name"} First Name:
+			%input{:type => "text", :name => "firstname", :class => "text"}
+		%li
+			%label{:for => "name"} Last Name:
+			%input{:type => "text", :name => "lastname", :class => "text"}
+		%li
+			%label{:for => "mail"} Email:
+			%input{:type => "text", :name => "mail", :class => "text"}
+		%li
+			%label{:for => "body"} Phone:
+			%input{:type => "text", :name => "mail", :class => "text"}
+		%li
+			%input{:type => "submit", :value => "Submit", :class => "button"}

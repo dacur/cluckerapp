@@ -1,0 +1,122 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$grey: #E0E0E0;
+$red: #E90006;
+
+html {
+	height: 100%;
+}
+
+body {
+	max-width: 940px;
+  	margin: 0 auto;
+  	padding: 0 5%;
+	background-color: $grey;
+	text-decoration: none;
+	font-family: 'Roboto', sans-serif;
+}
+
+/* BEGIN NAVIGATION */
+.navbartop {
+	margin-top: 10px;
+}
+
+.navlinks {
+	display: inline-block;
+	& a {
+		text-decoration: none;
+		padding: 10px;
+		float: left;
+		color: $red;
+		&:hover {
+			text-decoration: underline;
+		}
+		/*&:visited {
+			color: black;
+		}*/
+	}
+}
+
+#small-logo {
+	max-width: 40px;
+	display: inline-block;
+	float: left;
+}
+
+.loginbutton {
+	display: inline-block;
+	float: right;
+	padding: 10px;
+	& a {
+		text-decoration: none;
+		padding: 10px;
+		color: $red;
+		&:hover {
+			background-color: white;
+			border-radius: 5px;
+		}
+	}
+}
+/*END NAVIGATION */
+
+/*BEGIN LOGIN AND SIGNUP PAGE*/
+.loginpagehidden {
+	display: none;
+}
+
+.loginpageactive {
+	display: block;
+	margin: 0 auto;
+	width: 60%;
+	height: 60%;
+	z-index: 200;
+	background: white;
+	padding: 20px;
+}
+
+.loginpageactive h2 {
+	text-align: center;
+}
+
+.buttonHolder {
+	text-align: center;
+
+ }
+
+.formmessage {
+	color: $red;
+}
+
+/*END LOGIN AND SIGNUP PAGE*/
+
+.aboutbody {
+	margin: 20px;
+	float: left;
+}
+
+.roundedimage img {
+	border-radius: 100%;
+	display: inline-block;
+	float: left;
+	margin-right: 50px;
+}
+
+.textcontainer ul {
+	display: inline-block;
+	float: left;
+	margin-left: 5px;
+	margin-top: -5px;
+}
+
+.contactform li {
+	list-style: none;
+	padding-bottom: 7px;
+}
+
+#motherclucker img {
+	border: solid 5px;
+	display: inline-block;
+	float: left;
+	margin-right: 50px;
+}
