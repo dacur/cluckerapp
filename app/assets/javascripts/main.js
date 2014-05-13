@@ -10,7 +10,7 @@ $(document).ready(function(){
 	var lastnameresult;
 	var firstnameresult;
 	var passwordresult;
-	var confirmpasswordresult = false;
+	// var confirmpasswordresult = false;
 	
 
 	/*function validateEmail(email) {
@@ -56,13 +56,13 @@ $(document).ready(function(){
 		return (false);
 	}
 
-	function ValidateConfirmPassword(value) {
-	var reg = /^[a-zA-Z]+$/;
-		if (reg.test(value))
-			return (true);
+	// function ValidateConfirmPassword(value) {
+	// var reg = /^[a-zA-Z]+$/;
+	// 	if (reg.test(value))
+	// 		return (true);
 
-		return (false);
-	}
+	// 	return (false);
+	// }
 
 	$('.loginbutton').on('click', function(){
 
@@ -130,33 +130,25 @@ $(document).ready(function(){
 			return password;
 		});
 
-		$('#confirmpassword').on('keyup', function(confirmpassword, password){
+		// $('#confirmpassword').on('keyup', function(confirmpassword, password){
 
-			var confirmpassword = $('#confirmpassword').val();
-			var confirmpasswordresult = ValidateConfirmPassword(confirmpassword);
+		// 	var confirmpassword = $('#confirmpassword').val();
+		// 	var confirmpasswordresult = ValidateConfirmPassword(confirmpassword);
 			
-				if (password !== confirmpassword){
-					console.log("Password match is bad")
-				} else {
-					console.log("Password match is good");
-					$('#confirmpasswordmessage').hide();
-					confirmpasswordresult = true;
-					return confirmpasswordresult;
-				}
-			return confirmpasswordresult;
-		});
+		// 		if (password !== confirmpassword){
+		// 			console.log("Password match is bad")
+		// 		} else {
+		// 			console.log("Password match is good");
+		// 			$('#confirmpasswordmessage').hide();
+		// 			confirmpasswordresult = true;
+		// 			return confirmpasswordresult;
+		// 		}
+		// 	return confirmpasswordresult;
+		// });
 
-		if (lastnameresult == true && firstnameresult == true && emailresult == true && passwordresult == true && confirmpasswordresult == true){
+		if (lastnameresult == true && firstnameresult == true && emailresult == true && passwordresult == true){
 			$('.submitbtn').show();
 		};
-
-		$.ajax({
-			url: '/api/woot',
-			data: {id: "You clicked the Log In Button.", name: "Good job."},
-			type: 'POST'
-		}).done(function(data){
-			console.log(data); //can be data.name, too, which would output "Awesome" to the console.log, or just data that would return an object
-		});
 
 
 
@@ -171,25 +163,28 @@ $(document).ready(function(){
 		var lastname = $('#lastname').val();
 		var email = $('#email').val();
 		var password = $('#password').val();
-
 		$.ajax({
-			url: '/api/submitform',
-			data: {firstname: firstname, lastname: lastname, email: email, password: password},
-			type: 'POST'
+			url: '/main/savelogin',
+			type: 'POST',
+			data: { firstname: firstname, lastname: lastname, email: email, password: password }
 		}).done(function(data){
-			console.log(data); //can be data.name, too, which would output "Awesome" to the console.log, or just data that would return an object
-		});
+			if (data === null) {
+				ShowError('We already have a user with that email address.  Did you forget your login info?');
+				return;
+			};
+	});
+
 
 		$('.loginpagehidden').toggleClass('loginpageactive');
 	});
 
 	$('.cancelbtn').on('click', function(){
 		$.ajax({
-			url: '/api/woot',
+			url: '/main/saveslogin',
 			data: {id: "No ID", name: "You clicked cancel."},
 			type: 'POST'
 		}).done(function(data){
-			console.log(data); //can be data.name, too, which would output "Awesome" to the console.log, or just data that would return an object
+			console.log(data);
 		});
 		$('.loginpagehidden').toggleClass('loginpageactive');
 	});

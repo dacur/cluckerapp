@@ -5,6 +5,7 @@ Clucker::Application.routes.draw do
   get "main/location"
   post "api/woot"
   post "api/submitform"
+  post "main/savelogin"
 
   root 'main#index'
 
