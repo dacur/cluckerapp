@@ -9,7 +9,7 @@ class MainController < ApplicationController
 	password = params[:password]
 	# puts firstname + " " + lastname + " email: " + email + " password: " + password
 
-	newuser = User.new(firstname: firstname, lastname: lastname, email: email, password: password)
+	newuser = User.new(first: firstname, last: lastname, email: email, password: password)
 
 		if (newuser.valid?)
 			newuser.save
