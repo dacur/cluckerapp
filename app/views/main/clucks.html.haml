@@ -1,0 +1,22 @@
+#wrapper
+	%h1 Welcome back #{@user.first}!
+	%input#hdnUserID(type="hidden" value="#{@user.id.to_s}")
+	.right.about
+		%h3 Clucks
+		%table
+			%tr
+				%th Name
+				%th Body
+				%th Date
+
+			- @clucks.each do |x|
+				%tr
+					%td= x.name
+					%td= x.body
+					%td= x.date
+
+%cluckswrapper
+	.left
+		%p Cluck here 
+		%input#clucktext 
+		%button#cluckbtn Submit!

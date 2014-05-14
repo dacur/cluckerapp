@@ -168,10 +168,10 @@ $(document).ready(function(){
 			type: 'POST',
 			data: { firstname: firstname, lastname: lastname, email: email, password: password }
 		}).done(function(data){
-			if (data === null) {
-				ShowError('We already have a user with that email address.  Did you forget your login info?');
-				return;
-			};
+			// if (data === null) {
+			// 	ShowError('We already have a user with that email address.  Did you forget your login info?');
+			// 	return;
+			// };
 	});
 
 
@@ -180,7 +180,7 @@ $(document).ready(function(){
 
 	$('.cancelbtn').on('click', function(){
 		$.ajax({
-			url: '/main/saveslogin',
+			url: '/main/savelogin',
 			data: {id: "No ID", name: "You clicked cancel."},
 			type: 'POST'
 		}).done(function(data){
@@ -189,7 +189,20 @@ $(document).ready(function(){
 		$('.loginpagehidden').toggleClass('loginpageactive');
 	});
 
+	$('#cluckbtn').on('click', function(){
+		var clucktext = $('#clucktext').val();
+		// var id = ""
+		var name = "David"
+		var date = "May 14, 2014"
+			$.ajax({
+			url: '/main/saveclucks',
+			data: {body: clucktext, name: name, date: date},
+			type: 'POST'
+		}).done(function(){
+			var clucktext = $('#clucktext').val(null)
+		});
 
+	});
 
 
 	

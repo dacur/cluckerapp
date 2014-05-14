@@ -120,3 +120,17 @@ body {
 	float: left;
 	margin-right: 50px;
 }
+
+.right {
+	display: inline-block;
+	float: right;
+}
+
+.left {
+	display: inline-block;
+	float: left;
+}
+
+th {
+	padding-right: 15px;
+}

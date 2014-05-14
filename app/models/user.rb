@@ -1,6 +1,8 @@
 
 class User
 
+  require 'cluck.rb'
+
   include Mongoid::Document
 
   field :first, type: String

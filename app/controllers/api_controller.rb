@@ -1,17 +1,17 @@
 require 'json'
 class ApiController < ApplicationController
-	def woot
-		id = params[:id]
-		name = params[:name]
-		puts id + '|' + name
+	# def woot
+	# 	id = params[:id]
+	# 	name = params[:name]
+	# 	puts id + '|' + name
 		
-		test = JSON.generate({'id' => id, 'name' => name})
-		puts test
+	# 	test = JSON.generate({'id' => id, 'name' => name})
+	# 	puts test
 
-		respond_to do |format|
-			format.json{render :json => test }
-		end
-	end
+	# 	respond_to do |format|
+	# 		format.json{render :json => test }
+	# 	end
+	# end
 
 	def submitform
 		firstname = params[:firstname]
