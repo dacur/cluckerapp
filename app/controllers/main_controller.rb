@@ -7,8 +7,8 @@ class MainController < ApplicationController
   end
   
   def savelogin
-	firstname = params[:firstname]
-	lastname = params[:lastname]
+	first = params[:firstname]
+	last = params[:lastname]
 	email = params[:email]
 	password = params[:password]
 	# puts firstname + " " + lastname + " email: " + email + " password: " + password
@@ -18,11 +18,12 @@ class MainController < ApplicationController
 		if (newuser.valid?)
 			newuser.save
 			render json: newuser
-			session[:user_id] = u.id
+			
 		else
 			render json: nil
 		end
-
+		session[:user_id] = newuser.id
+		session[:user_name] = newuser.first   #do not have to assign to a variable
 	# respond_to do |format|
 	# 	format.json{render :json => test }
  #   	end
