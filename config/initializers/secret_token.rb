@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Clucker::Application.config.secret_key_base = '50cd1a8897238cd64ac08ab4a42bc67dc8a1d5b0cabc6f5e64d7faa804a41f90f16a83039643ea99591f612b7ab887b4a74b6517d64cdac7c93e403411db62d2'
+Clucker::Application.config.secret_key_base = '2e556087306e385b99e73f473476590e63b8d58ffae1d57f5052d564e6117a3eb89b6ff7c3b3928203fda18396f9df58a0d3dd62cb0b0efe081910c32048f813'

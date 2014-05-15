@@ -18,6 +18,7 @@ class MainController < ApplicationController
 		if (newuser.valid?)
 			newuser.save
 			render json: newuser
+			session[:user_id] = u.id
 		else
 			render json: nil
 		end
