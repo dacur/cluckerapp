@@ -18,36 +18,38 @@ class MainController < ApplicationController
 		if (newuser.valid?)
 			newuser.save
 			render json: newuser
+			session[:user_id] = newuser.id
+			session[:user_name] = newuser.first 
 			
 		else
 			render json: nil
 		end
-		session[:user_id] = newuser.id
-		session[:user_name] = newuser.first   #do not have to assign to a variable
-	# respond_to do |format|
-	# 	format.json{render :json => test }
- #   	end
-
-	# head :ok
    end
 
-def clucks
-	@clucks = Cluck.all
-end
+    def logout #this is the way to do it using a form; not how you normally want to do
+    	reset_session
+    	flash[:notice] = "You have successfully logged out"
+    	redirect_to root_url
+    end
 
-def saveclucks
-	# id = params[:id]
-	name = params[:name]
-	body = params[:body]
-	date = params[:date]
 
-	newcluck = Cluck.new(name: name, body: body, date: date)
+	def clucks
+		@clucks = Cluck.all
+	end
 
-	newcluck.save
-	render json: newcluck
+	def saveclucks
+		# id = params[:id]
+		name = params[:name]
+		body = params[:body]
+		date = params[:date]
 
-	head :ok
-end
+		newcluck = Cluck.new(name: name, body: body, date: date)
+
+		newcluck.save
+		render json: newcluck
+
+		head :ok
+	end
 
 
 
