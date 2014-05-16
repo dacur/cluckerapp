@@ -1,7 +1,7 @@
 
 class User
 
-  require 'cluck.rb'
+  # require 'cluck.rb'
 
   include Mongoid::Document
 

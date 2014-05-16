@@ -1,35 +1,58 @@
 class MainController < ApplicationController
-  def index
-  end
+
+	def index
+		if (session[:user_id])
+			redirect_to '/main/clucks'
+		end
+	end
 
   def users
   	@users = User.all
   end
   
   def savelogin
+  	p 'boom'
+  	
 	first = params[:firstname]
 	last = params[:lastname]
 	email = params[:email]
 	password = params[:password]
-	# puts firstname + " " + lastname + " email: " + email + " password: " + password
+	
+	u = User.find_by(email: email)
 
-	newuser = User.new(first: first, last: last, email: email, password: password)
+	if (u !=nil && u.password == password)
+		user_id = u.id.to_s
+			
+		session[:user_id] = user_id
+		session[:first] = u.first
+		session[:last] = u.last
+
+		render json: user_id.to_json
+	else
+		newuser = User.new(first: first, last: last, email: email, password: password)
 
 		if (newuser.valid?)
 			newuser.save
-			render json: newuser
-			session[:user_id] = newuser.id
+
+			session[:user_id] = newuser.id.to_s
 			session[:user_name] = newuser.first 
+			session[:last] = newuser.last
+
+			render json: newuser
 			
 		else
 			render json: nil
 		end
-   end
+		head :ok
+	end
+   
+   	head :ok
+  end
+  
 
-    def logout #this is the way to do it using a form; not how you normally want to do
-    	reset_session
-    	flash[:notice] = "You have successfully logged out"
-    	redirect_to root_url
+  def logout 
+		reset_session
+		head :ok
     end
 
 
@@ -38,12 +61,16 @@ class MainController < ApplicationController
 	end
 
 	def saveclucks
-		# id = params[:id]
-		name = params[:name]
-		body = params[:body]
-		date = params[:date]
+		text = params[:text].chomp
+		user_id = session[:user_id]
+		first = session[:first]
+		last = session[:last]
+		user_name = first + " " + last
 
-		newcluck = Cluck.new(name: name, body: body, date: date)
+		post_date = Time.now
+		post_date.to_formatted_s(:short)   
+
+		newcluck = Cluck.new(text: text, user_id: user_id, user_name: user_name, post_date: post_date)
 
 		newcluck.save
 		render json: newcluck
@@ -54,3 +81,4 @@ class MainController < ApplicationController
 
 
 end
+

@@ -10,20 +10,18 @@ $(document).ready(function(){
 	var lastnameresult;
 	var firstnameresult;
 	var passwordresult;
-	// var confirmpasswordresult = false;
-	
+	var newuser;
 
-	/*function validateEmail(email) {
-		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-			if( !emailReg.test( email ) ) {
-				emailresult = false;
-				return emailresult;
-			} else {
-				emailresult = true;
-				return emailresult;
-			}
-	};*/
+	if ($('#hdnID').val() !== '') {
+		$('.loginbutton').hide();
+		$('.logoutbutton').show();
+	}
+	else {
+		$('.logoutbutton').hide();
+		$('.loginbutton').show();
+	}
 
+	//START Validation functions
 	function ValidateEmail(value) {
 	var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 		if (reg.test(value))
@@ -55,15 +53,9 @@ $(document).ready(function(){
 
 		return (false);
 	}
+	//END validation functions
 
-	// function ValidateConfirmPassword(value) {
-	// var reg = /^[a-zA-Z]+$/;
-	// 	if (reg.test(value))
-	// 		return (true);
-
-	// 	return (false);
-	// }
-
+	//START of on click for login button
 	$('.loginbutton').on('click', function(){
 
 		$('.submitbtn').hide();
@@ -130,33 +122,13 @@ $(document).ready(function(){
 			return password;
 		});
 
-		// $('#confirmpassword').on('keyup', function(confirmpassword, password){
-
-		// 	var confirmpassword = $('#confirmpassword').val();
-		// 	var confirmpasswordresult = ValidateConfirmPassword(confirmpassword);
-			
-		// 		if (password !== confirmpassword){
-		// 			console.log("Password match is bad")
-		// 		} else {
-		// 			console.log("Password match is good");
-		// 			$('#confirmpasswordmessage').hide();
-		// 			confirmpasswordresult = true;
-		// 			return confirmpasswordresult;
-		// 		}
-		// 	return confirmpasswordresult;
-		// });
-
 		if (lastnameresult == true && firstnameresult == true && emailresult == true && passwordresult == true){
 			$('.submitbtn').show();
 		};
 
-
-
 		$('.loginpagehidden').toggleClass('loginpageactive');
 
-
-
-	});
+	}); //END of on click for log in button
 
 	$('.submitbtn').on('click', function(){
 		var firstname = $('#firstname').val();
@@ -172,11 +144,9 @@ $(document).ready(function(){
 			// 	ShowError('We already have a user with that email address.  Did you forget your login info?');
 			// 	return;
 			// };
-	});
-
-
+		}); 
 		$('.loginpagehidden').toggleClass('loginpageactive');
-	});
+	}); //END SUBMIT BUTTON
 
 	$('.cancelbtn').on('click', function(){
 		$.ajax({
@@ -189,14 +159,24 @@ $(document).ready(function(){
 		$('.loginpagehidden').toggleClass('loginpageactive');
 	});
 
+	$('.logoutbutton').on('click', function(){
+		$.ajax({
+			url: 'main/logout'
+			// data: {}
+			// type: 'POST'
+		}).done(function(){
+			window.location.replace("/")
+		});
+
+	});
+
+	//START CLUCKS ******FIX**************
 	$('#cluckbtn').on('click', function(){
-		var clucktext = $('#clucktext').val();
-		// var id = ""
-		var name = "David"
-		var date = "May 14, 2014"
+		var text = $('#clucktext').val();
+
 			$.ajax({
 			url: '/main/saveclucks',
-			data: {body: clucktext, name: name, date: date},
+			data: {text: text},
 			type: 'POST'
 		}).done(function(){
 			var clucktext = $('#clucktext').val(null)

@@ -6,8 +6,10 @@
 		=javascript_include_tag "application", "data-turbolinks-track" => true
 		=csrf_meta_tags
 		%link{:rel => :stylesheet, :type => :"text/css", :href => 'http://fonts.googleapis.com/css?family=Roboto'}
-	
+
+
 	%body
+		%input(type="hidden" id="hdnID" value="#{session[:user_id]}")
 		.navbartop
 			#small-logo
 				=link_to image_tag('cluckerlogosmall.gif'), '/', :alt=>"Clucker Logo", :title=>"Go home!"
@@ -21,7 +23,8 @@
 
 			%button.loginbutton
 				Log In
-			%input#logoutbutton(type="submit" text="Log Out")
+			%button.logoutbutton
+				Log Out
 
 		.loginpagehidden
 			%h2 Please log into or sign up for Clucker

@@ -1,9 +1,10 @@
 Clucker::Application.routes.draw do
-  get "main/index"
+  # get "main/index"
   get "main/about"
   get "main/contact"
   get "main/location"
   get "main/clucks"
+  get "main/logout"
   # post "api/woot"
   post "api/submitform"
   post "main/savelogin"
