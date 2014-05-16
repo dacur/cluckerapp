@@ -11,7 +11,6 @@ class MainController < ApplicationController
   end
   
   def savelogin
-  	p 'boom'
   	
 	first = params[:firstname]
 	last = params[:lastname]
@@ -38,7 +37,7 @@ class MainController < ApplicationController
 			session[:user_id] = newuser.id.to_s
 			session[:first] = newuser.first 
 			session[:last] = newuser.last
-			session[:user_name] = u.first + " " + u.last
+			session[:user_name] = newuser.first + " " + newuser.last
 
 			render json: newuser
 			

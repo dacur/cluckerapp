@@ -161,7 +161,7 @@ $(document).ready(function(){
 
 	$('.logoutbutton').on('click', function(){
 		$.ajax({
-			url: 'main/logout'
+			url: '/main/logout'
 			// data: {}
 			// type: 'POST'
 		}).done(function(){
