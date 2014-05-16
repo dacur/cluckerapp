@@ -173,6 +173,7 @@ $(document).ready(function(){
 	//START CLUCKS ******FIX**************
 	$('#cluckbtn').on('click', function(){
 		var text = $('#clucktext').val();
+		var user_id = $('#hdnID').val();
 
 			$.ajax({
 			url: '/main/saveclucks',

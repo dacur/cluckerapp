@@ -26,6 +26,7 @@ class MainController < ApplicationController
 		session[:user_id] = user_id
 		session[:first] = u.first
 		session[:last] = u.last
+		session[:user_name] = u.first + " " + u.last
 
 		render json: user_id.to_json
 	else
@@ -35,8 +36,9 @@ class MainController < ApplicationController
 			newuser.save
 
 			session[:user_id] = newuser.id.to_s
-			session[:user_name] = newuser.first 
+			session[:first] = newuser.first 
 			session[:last] = newuser.last
+			session[:user_name] = u.first + " " + u.last
 
 			render json: newuser
 			
@@ -62,10 +64,11 @@ class MainController < ApplicationController
 
 	def saveclucks
 		text = params[:text].chomp
+
 		user_id = session[:user_id]
 		first = session[:first]
 		last = session[:last]
-		user_name = first + " " + last
+		user_name = session[:user_name]
 
 		post_date = Time.now
 		post_date.to_formatted_s(:short)   
