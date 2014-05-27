@@ -41,7 +41,7 @@ class MainController < ApplicationController
 			session[:last] = newuser.last
 			session[:user_name] = newuser.first + " " + newuser.last
 
-			SimpleMailer.welcome_email(u).deliver
+			SimpleMailer.welcome_email(newuser).deliver
 
 			render json: newuser
 			
